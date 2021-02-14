@@ -33,8 +33,8 @@ function Urls(props) {
 			<BrowserRouter>
 				<Switch>
 					<Route exact path="/login/"> <Login {...props} /></Route>
-					<PrivateRoute exact path="/" isAuthenticated={props.isAuthenticated}><Home {...props} /></PrivateRoute>
 					<PrivateRoute exact path="/update_password/" isAuthenticated={props.isAuthenticated}><PasswordUpdate {...props} /></PrivateRoute>
+					<PrivateRoute exact path="/" isAuthenticated={props.isAuthenticated}><Home {...props} /></PrivateRoute>
 				</Switch>
 			</BrowserRouter>
 		</div>

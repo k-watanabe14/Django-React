@@ -91,6 +91,8 @@ function PasswordUpdate(props) {
 						type="password"
 						id="new_password1"
 						onChange={handleFormFieldChange}
+						error={new_password1 !== new_password2}
+						helperText={new_password1 !== new_password2 ? "Passwords don't match" : null}
 					/>
 					<TextField
 						variant="outlined"
