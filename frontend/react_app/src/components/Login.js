@@ -3,12 +3,15 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
 import { connect } from 'react-redux';
 import * as actions from '../store/authActions';
+
 import { useHistory, useLocation } from "react-router-dom";
 
 
@@ -34,13 +37,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Login(props) {
 	const classes = useStyles();
-
 	const [username, setuserName] = React.useState(null);
 	const [password, setPassword] = React.useState(null);
 
 	let history = useHistory();
 	let location = useLocation();
 	let { from } = location.state || { from: { pathname: "/" } };
+
+	React.useEffect(() => {
+		if (props.isAuthenticated) { history.replace(from) };
+	});
+
 
 	const handleFormFieldChange = (event) => {
 		switch (event.target.id) {
@@ -50,10 +57,6 @@ function Login(props) {
 		}
 
 	};
-
-	React.useEffect(() => {
-		if (props.isAuthenticated) { history.replace(from) };
-	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -109,6 +112,7 @@ function Login(props) {
 		</Container>
 	);
 }
+
 
 const mapDispatchToProps = dispatch => {
 	return {
